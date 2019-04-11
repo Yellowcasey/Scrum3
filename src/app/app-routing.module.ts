@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'activity-one', loadChildren: './activity-one/activity-one.module#ActivityOnePageModule' }
 ];
 
 @NgModule({
