@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'activity-one', loadChildren: './activity-one/activity-one.module#ActivityOnePageModule' },
   { path: 'tools', loadChildren: './tools/tools.module#ToolsPageModule' },
   { path: 'activity', loadChildren: './activity-one/activity/activity.module#ActivityPageModule' }
+
 ];
 
 @NgModule({
