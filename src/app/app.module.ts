@@ -9,14 +9,36 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { masterFirebaseConfig } from './api-keys';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+  apiKey: masterFirebaseConfig.apiKey,
+  authDomain: masterFirebaseConfig.authDomain,
+  databaseURL: masterFirebaseConfig.databaseURL,
+  storageBucket: masterFirebaseConfig.storageBucket,
+  messagingSenderId: masterFirebaseConfig.messagingSenderId
+};
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AngularFireModule.initializeApp(firebaseConfig),
+    AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
+  // imports: [
+  //   BrowserModule,
+  //   AppRoutingModule,
+  //   AngularFireModule.initializeApp(firebaseConfig),
+  //   AngularFireDatabaseModule
+  // ],
   providers: [
     StatusBar,
     SplashScreen,
