@@ -12,12 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
   authDomain: masterFirebaseConfig.authDomain,
   databaseURL: masterFirebaseConfig.databaseURL,
-  storageBucket: masterFirebaseConfig.storageBucket
+  storageBucket: masterFirebaseConfig.storageBucket,
+  messagingSenderId: masterFirebaseConfig.messagingSenderId
 };
 
 @NgModule({
@@ -27,8 +29,9 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    AppRoutingModule
-    AngularFireDatabaseModule
+    AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   // imports: [
   //   BrowserModule,
