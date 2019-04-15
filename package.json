@@ -36,6 +36,7 @@
     "core-js": "^2.5.4",
     "firebase": "^3.6.6",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.4.0",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {

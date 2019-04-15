@@ -13,6 +13,8 @@ log.txt
 npm-debug.log*
 
 .idea/
+#firebase credentials
+/src/app/api-keys.ts
 .ionic/
 .sourcemaps/
 .sass-cache/
