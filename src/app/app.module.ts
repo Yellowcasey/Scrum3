@@ -25,7 +25,9 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     StatusBar,
