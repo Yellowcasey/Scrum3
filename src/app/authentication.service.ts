@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+//import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs/Observable';//from last step (authen) from info in trello
+
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
