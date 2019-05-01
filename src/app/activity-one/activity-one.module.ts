@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ActivityOnePage } from './activity-one.page';
 
+import { FirebaseListObservable } from 'angularfire2/database';
+
 const routes: Routes = [
   {
     path: '',
@@ -23,4 +25,6 @@ const routes: Routes = [
   ],
   declarations: [ActivityOnePage]
 })
-export class ActivityOnePageModule {}
+export class ActivityOnePageModule implements OnInit {
+  vocabulary: FirebaseListObservable<any []>;
+}

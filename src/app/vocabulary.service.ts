@@ -9,4 +9,8 @@ export class VocabularyService {
   constructor(private database: AngularFireDatabase) {
     this.vocabulary = database.list('vocabulary');
   }
+
+  getVocabulary(){
+    return this.vocabulary;
+  }
 }

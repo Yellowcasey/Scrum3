@@ -14,10 +14,15 @@
           </ion-card-header>
           <ion-card-content>
             <p>
-              In this activity, we will learn some common terms used in Philosophy. 
+              In this activity, we will learn some common terms used in Philosophy.
             </p>
             <ion-button href= "/activity" slot="end">Begin</ion-button>
           </ion-card-content>
         </ion-card>
+        <div *ngFor="let vocab of vocabulary | async" class="panel panel-default">
+  <div class="panel-body">
+    <h3><em>{{vocabulary.word}}</em> means: {{vocabulary.definition}}</h3>
+  </div>
+</div>
   </ion-header>
 </ion-content>
