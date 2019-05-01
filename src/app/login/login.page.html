@@ -6,24 +6,21 @@
 <ion-menu></ion-menu>
 
 <ion-content padding>
-CheckHeck
+  <ion-list>
+
+  <ion-item>
+    <ion-label position="floating">username</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label postition="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  </ion-list>
+
+  <ion-button fill="solid" expand="block" color="dark" (click)="login()">Login</ion-button>
 
 </ion-content>
-<!--
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" routerLink="">Authentication Example</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="isLoggedIn"> \\if the user is logged in, we’ll show that user’s name along with an event binding to logout.
-          <a>{{userName}}</a>
-          <a (click)="logout()">Log out</a>
-        </li>
-        <li *ngIf ="!isLoggedIn"> \\if the user isn’t logged in, we’ll have an event binding to login.
-          <a (click)="login()">Log in</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  -->
+
