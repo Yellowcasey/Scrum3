@@ -11,8 +11,10 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-
+/src/app/api-keys.ts
 .idea/
+#firebase credentials
+/src/app/api-keys.ts
 .ionic/
 .sourcemaps/
 .sass-cache/

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ListPage } from './list.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
