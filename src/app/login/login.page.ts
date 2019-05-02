@@ -1,3 +1,4 @@
+import { Routes, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
 import { auth } from 'firebase/app'
@@ -12,7 +13,7 @@ export class LoginPage implements OnInit {
   username: string = ""
   password: string = ""
 
-  constructor(public afAuth:AngularFireAuth) { }
+  constructor(public afAuth:AngularFireAuth, public router:Router) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,7 @@ export class LoginPage implements OnInit {
     console.log(password)
     try {
       const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      const route = await this.router.navigateByUrl('home')
       console.log("Attempting to log in...")
       
     } catch(err) {

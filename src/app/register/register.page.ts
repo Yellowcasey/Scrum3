@@ -1,4 +1,4 @@
-
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { auth } from 'firebase/app'
 import { AngularFireAuth } from 'angularfire2/auth'
@@ -14,7 +14,7 @@ export class RegisterPage implements OnInit {
   password: string = ""
   cpassword: string = ""
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, public router:Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +28,7 @@ export class RegisterPage implements OnInit {
 
     try {
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(username, password)
+      const route = await this.router.navigateByUrl('home')
       console.log("A user has been created");
         }catch(error){
           console.dir(error)
