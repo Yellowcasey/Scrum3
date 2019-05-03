@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';//from last step (authen) from info
 import { Router } from '@angular/router';
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { MenuController } from '@ionic/angular';
+
 
 
 @Injectable()
@@ -14,11 +16,20 @@ export class AuthenticationService {
   username: string = ""
   password: string = ""
 
-  constructor(public afAuth: AngularFireAuth, public router: Router) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, public menu: MenuController) {
     afAuth.authState.subscribe((auth) => {
       this.user = auth
+
+      if(this.authenticated){
+
+        menu.enable(true)
+        menu.getOpen()        
+      }else{
+        menu.enable(false)
+      }
       console.log("User authstate changed")
       console.log(this.authenticated)
+      
     });
    }
    get currentUserObservable(): Observable<firebase.User> {
@@ -37,7 +48,7 @@ export class AuthenticationService {
      try {
        const logout = await this.afAuth.auth.signOut();
        this.router.navigateByUrl("")
-       console.log(this.authenticated)
+
    } catch {
       console.error("Error logging out");
       
