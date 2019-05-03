@@ -5,17 +5,25 @@ import { Router } from '@angular/router';
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
+
 @Injectable()
 export class AuthenticationService {
-  user: Observable<firebase.User>;
-  
+  user: firebase.User = null;
+
   
   username: string = ""
   password: string = ""
 
   constructor(public afAuth: AngularFireAuth, public router: Router) {
-    this.user = afAuth.authState;
+    afAuth.authState.subscribe((auth) => {
+      this.user = auth
+      console.log("User authstate changed")
+      console.log(this.authenticated)
+    });
    }
+   get currentUserObservable(): Observable<firebase.User> {
+    return this.afAuth.authState
+  }
    get authenticated(): boolean {
      return this.user !== null
    }
@@ -28,7 +36,8 @@ export class AuthenticationService {
    async logout() {
      try {
        const logout = await this.afAuth.auth.signOut();
-     console.log("logout successful")
+       this.router.navigateByUrl("")
+       console.log(this.authenticated)
    } catch {
       console.error("Error logging out");
       

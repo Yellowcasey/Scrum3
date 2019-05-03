@@ -1,4 +1,5 @@
 import * as tslib_2 from "tslib";
+import { AuthenticationService } from './authentication.service';
 import { masterFirebaseConfig } from './api-keys';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,6 +40,7 @@ var AppModule = /** @class */ (function () {
                 AngularFireAuthModule
             ],
             providers: [
+                AuthenticationService,
                 AuthGuard,
                 StatusBar,
                 SplashScreen,
