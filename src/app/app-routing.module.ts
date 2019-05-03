@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'tools', loadChildren: './tools/tools.module#ToolsPageModule', canActivate: [AuthGuard] },
   { path: 'activity', loadChildren: './activity-one/activity/activity.module#ActivityPageModule', canActivate: [AuthGuard] },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'register', loadChildren: './register/register.module#RegisterPageModule', canActivate: [AuthGuard] }
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
 
 
 ];
