@@ -16,7 +16,9 @@ export class AppComponent {
   user;
 
   private isLoggedIn: Boolean;
-  private userName: String;
+  public userName: String;
+  username: string = ""
+  password: string = ""
 
   public appPages = [
     {
@@ -46,8 +48,10 @@ export class AppComponent {
     this.authService.user.subscribe(user => {
       if (user == null) {
         this.isLoggedIn = false;
+        console.log(this.isLoggedIn + "!!!")
       } else {
         this.isLoggedIn = true;
+        console.log(user.email + " was not logged in")
         this.userName = user.displayName;
       }
     });
@@ -59,12 +63,16 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-  login() {
-    this.authService.login();
-  }
-
-  logout() {
-    this.authService.logout();
+  async logout(){
+    const{ username, password } = this
+    console.log(username)
+    console.log(password)
+    try {
+      this.authService.logout();
+      console.log("Attempting to log out...")
+      
+    } catch(err) {
+      console.dir(err)
+    }
   }
 }
