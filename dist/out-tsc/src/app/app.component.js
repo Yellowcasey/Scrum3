@@ -7,11 +7,12 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 var AppComponent = /** @class */ (function () {
     function AppComponent(platform, splashScreen, statusBar, authService) {
-        var _this = this;
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.authService = authService;
+        this.username = "";
+        this.password = "";
         this.appPages = [
             {
                 title: 'Home',
@@ -30,15 +31,18 @@ var AppComponent = /** @class */ (function () {
             }
         ];
         this.initializeApp();
-        this.authService.user.subscribe(function (user) {
-            if (user == null) {
-                _this.isLoggedIn = false;
-            }
-            else {
-                _this.isLoggedIn = true;
-                _this.userName = user.displayName;
-            }
+        /*
+        this.authService.user.subscribe(user => {
+          if (user == null) {
+            this.isLoggedIn = false;
+            console.log(this.isLoggedIn + "!!!")
+          } else {
+            this.isLoggedIn = true;
+            console.log(user.email + " was not logged in")
+            this.userName = user.displayName;
+          }
         });
+        */
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
@@ -47,11 +51,23 @@ var AppComponent = /** @class */ (function () {
             _this.splashScreen.hide();
         });
     };
-    AppComponent.prototype.login = function () {
-        this.authService.login();
-    };
     AppComponent.prototype.logout = function () {
-        this.authService.logout();
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var _a, username, password;
+            return tslib_1.__generator(this, function (_b) {
+                _a = this, username = _a.username, password = _a.password;
+                console.log(username);
+                console.log(password);
+                try {
+                    this.authService.logout();
+                    console.log("Attempting to log out...");
+                }
+                catch (err) {
+                    console.dir(err);
+                }
+                return [2 /*return*/];
+            });
+        });
     };
     AppComponent = tslib_1.__decorate([
         Component({

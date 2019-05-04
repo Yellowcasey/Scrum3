@@ -45,6 +45,7 @@ export class AppComponent {
     public authService: AuthenticationService
   ) {
     this.initializeApp();
+    /*
     this.authService.user.subscribe(user => {
       if (user == null) {
         this.isLoggedIn = false;
@@ -55,6 +56,7 @@ export class AppComponent {
         this.userName = user.displayName;
       }
     });
+    */
   }
 
   initializeApp() {
