@@ -4,7 +4,7 @@ import { AuthGuard } from './../authguard.guard';
 import { Routes, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
-import { auth } from 'firebase/app'
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-login',

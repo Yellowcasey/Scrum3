@@ -44,8 +44,12 @@ export class AuthenticationService {
    async login(username, password) {
     try{
       const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      console.log(res)
       const route = await this.router.navigateByUrl('home')
+
    }catch{
+     console.dir();
+
 
    }
 
@@ -58,7 +62,7 @@ export class AuthenticationService {
 
    } catch {
       console.error("Error logging out(authentication.service logout())");
-      this.router.navigate(['login']);    
+      this.router.navigate(['login']);
 
      }
      async function presentAlert() {
