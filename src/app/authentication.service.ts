@@ -1,10 +1,13 @@
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 //import { Observable, of } from 'rxjs';
 import { Observable } from 'rxjs/Observable';//from last step (authen) from info in trello
 import { Router } from '@angular/router';
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { MenuController } from '@ionic/angular';
+import { MenuController, AlertController } from '@ionic/angular';
+import { Alert } from 'selenium-webdriver';
+
 
 
 
@@ -15,8 +18,9 @@ export class AuthenticationService {
   
   username: string = ""
   password: string = ""
+  alert = this.alertController.create()
 
-  constructor(public afAuth: AngularFireAuth, public router: Router, public menu: MenuController) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, public menu: MenuController, public alertController: AlertController) {
     afAuth.authState.subscribe((auth) => {
       this.user = auth
 
@@ -29,7 +33,7 @@ export class AuthenticationService {
       }else{
         menu.enable(false)
       }
-      console.log("User authstate changed hello hello")
+      console.log("User authstate changed")
       console.log(this.authenticated)
       
     });
@@ -52,8 +56,23 @@ export class AuthenticationService {
        this.router.navigateByUrl("")
 
    } catch {
-      console.error("Error logging out");
+      console.error("Error logging out(authentication.service logout())");
+      this.router.navigate(['login']);
+      
       
      }
+     async function presentAlert() {
+      console.log("YES!")
+      const alertController = document.querySelector('ion-alert-controller');
+      await alertController.componentOnReady();
+    
+      const alert = await alertController.create({
+        header: 'Alert!',
+        subHeader: 'Unknown issue',
+        message: 'You have been logged out successfully.',
+        buttons: ['OK']
+      });
+      return await alert.present();
+    }
   }
 }
