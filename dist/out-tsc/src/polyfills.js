@@ -73,4 +73,8 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+//This fixed a library incompatibility I had.
+//This fixes libraries sometimes that are not up to date
+// Try removing it later.
+window.global = window;
 //# sourceMappingURL=polyfills.js.map

@@ -1,3 +1,6 @@
+import { AuthenticationService } from './authentication.service';
+
+import * as tslib_1 from "tslib";
 import { masterFirebaseConfig } from './api-keys';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthGuard } from './authguard.guard'
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -36,6 +40,8 @@ export const firebaseConfig = {
     AngularFireAuthModule
   ],
   providers: [
+    AuthenticationService,
+    AuthGuard,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

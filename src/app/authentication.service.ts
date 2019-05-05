@@ -1,23 +1,59 @@
 import { Injectable } from '@angular/core';
 //import { Observable, of } from 'rxjs';
 import { Observable } from 'rxjs/Observable';//from last step (authen) from info in trello
-
+import { Router } from '@angular/router';
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { MenuController } from '@ionic/angular';
+
+
 
 @Injectable()
 export class AuthenticationService {
-  user: Observable<firebase.User>;
+  user: firebase.User = null;
 
-  constructor(public afAuth: AngularFireAuth) {
-    this.user = afAuth.authState;
+  
+  username: string = ""
+  password: string = ""
+
+  constructor(public afAuth: AngularFireAuth, public router: Router, public menu: MenuController) {
+    afAuth.authState.subscribe((auth) => {
+      this.user = auth
+
+      if(this.authenticated){
+
+        menu.enable(true)
+        menu.getOpen()        
+      }else if(!this.authenticated){
+        menu.enable(false)
+      }else{
+        menu.enable(false)
+      }
+      console.log("User authstate changed hello hello")
+      console.log(this.authenticated)
+      
+    });
+   }
+   get currentUserObservable(): Observable<firebase.User> {
+    return this.afAuth.authState
+  }
+   get authenticated(): boolean {
+     return this.user !== null
    }
 
-   login() {
-     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+   async login(username, password) {
+    const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+    const route = await this.router.navigateByUrl('home')
    }
 
-   logout() {
-     this.afAuth.auth.signOut();
-   }
+   async logout() {
+     try {
+       const logout = await this.afAuth.auth.signOut();
+       this.router.navigateByUrl("")
+
+   } catch {
+      console.error("Error logging out");
+      
+     }
+  }
 }

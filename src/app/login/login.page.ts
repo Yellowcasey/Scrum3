@@ -1,4 +1,10 @@
+import { MenuController } from '@ionic/angular';
+import { AuthenticationService } from './../authentication.service';
+import { AuthGuard } from './../authguard.guard';
+import { Routes, Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
+import { auth } from 'firebase/app'
 
 @Component({
   selector: 'app-login',
@@ -7,9 +13,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  username: string = ""
+  password: string = ""
+
+  constructor(public afAuth:AngularFireAuth, public router:Router, public authService: AuthenticationService) { }
 
   ngOnInit() {
+    //--This if we want to logout when they close the page.
+    this.authService.logout()
+
+    //--This if we want to redirect if they are still logged in
+    //couldn't get it, any ideas?
+  }
+
+  async login(){
+    const{ username, password } = this
+    console.log(username)
+    console.log(password)
+    try {
+      this.authService.login(username, password);
+      console.log("Attempting to log in...")
+      
+    } catch(err) {
+      console.dir(err)
+    }
   }
 
 }
