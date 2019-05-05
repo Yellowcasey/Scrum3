@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, first, tap } from 'rxjs/operators';
-//import { }
 import { auth } from 'firebase';
 import { AlertController } from '@ionic/angular';
 //import { userInfo } from 'os';
