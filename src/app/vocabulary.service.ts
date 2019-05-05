@@ -1,17 +1,26 @@
-import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { map } from 'rxjs/operators'
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class VocabularyService {
-  vocabulary: AngularFireList<any[]>;
-  constructor(private database: AngularFireDatabase) {
-    this.vocabulary = database.list<any[]>('vocabulary');
-  }
 
-  getVocabulary(): AngularFireList<any[]> {
-    console.log(JSON.stringify(this.vocabulary));
-    return this.vocabulary;
+  itemsRef: Observable<any>;
+  words: Observable<any[]>;
 
+  constructor(public afDB: AngularFireDatabase) {
+    //Six hours later, and I still dont know what is going on here, but it works.
+    this.itemsRef = afDB.object('/vocabulary').valueChanges();
+    this.words= afDB.list('/vocabulary/').snapshotChanges(); 
+    console.log(this.itemsRef)
+    
+    
   }
 }
+
+

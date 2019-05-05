@@ -15,8 +15,8 @@
           </div>
           <div class="flip-card-back">
             <h2>Term should go here</h2>
-            <li *ngFor="let term of vocabulary">
-              {{term.definition}}
+            <li *ngFor="let i of vocabulary | async">
+              {{i.word}}
               </li>
           </div>
         </div>

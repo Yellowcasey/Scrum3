@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import {AngularFireList} from 'angularfire2/database';
 import { VocabularyService } from 'src/app/vocabulary.service';
@@ -9,11 +10,11 @@ import { VocabularyService } from 'src/app/vocabulary.service';
   providers: [VocabularyService]
 })
 export class ActivityPage implements OnInit {
-  vocabulary: AngularFireList<any[]>;
+  vocabulary: Observable<any>;
   constructor(private vocabularyService:VocabularyService) { }
 
   ngOnInit() {
-    this.vocabulary =this.vocabularyService.getVocabulary();
+    this.vocabulary = this.vocabularyService.itemsRef;
   }
 
 }
