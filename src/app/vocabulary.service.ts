@@ -6,10 +6,12 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class VocabularyService {
   vocabulary: AngularFireList<any[]>;
   constructor(private database: AngularFireDatabase) {
-    this.vocabulary = database.list('vocabulary');
+    this.vocabulary = database.list<any[]>('vocabulary');
   }
 
-  getVocabulary(){
+  getVocabulary(): AngularFireList<any[]> {
+    console.log(JSON.stringify(this.vocabulary));
     return this.vocabulary;
+
   }
 }
