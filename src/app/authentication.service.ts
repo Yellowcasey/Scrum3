@@ -48,8 +48,12 @@ export class AuthenticationService {
    async login(username, password) {
     try{
       const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      console.log(res)
       const route = await this.router.navigateByUrl('home')
+      
    }catch{
+     console.dir();
+     
     
    }
    
