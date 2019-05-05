@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import { AuthenticationService } from './../authentication.service';
 import { AuthGuard } from './../authguard.guard';
 import { Routes, Router } from '@angular/router';
@@ -18,6 +19,11 @@ export class LoginPage implements OnInit {
   constructor(public afAuth:AngularFireAuth, public router:Router, public authService: AuthenticationService) { }
 
   ngOnInit() {
+    //--This if we want to logout when they close the page.
+    this.authService.logout()
+
+    //--This if we want to redirect if they are still logged in
+    //couldn't get it, any ideas?
   }
 
   async login(){

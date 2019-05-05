@@ -24,10 +24,12 @@ export class AuthenticationService {
 
         menu.enable(true)
         menu.getOpen()        
+      }else if(!this.authenticated){
+        menu.enable(false)
       }else{
         menu.enable(false)
       }
-      console.log("User authstate changed")
+      console.log("User authstate changed hello hello")
       console.log(this.authenticated)
       
     });

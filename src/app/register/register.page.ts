@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../authentication.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { auth } from 'firebase/app'
@@ -14,9 +15,10 @@ export class RegisterPage implements OnInit {
   password: string = ""
   cpassword: string = ""
 
-  constructor(public afAuth: AngularFireAuth, public router:Router) { }
+  constructor(public afAuth: AngularFireAuth, public router:Router, public auth:AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.logout()
   }
 
   async register() {
