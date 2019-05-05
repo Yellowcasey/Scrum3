@@ -10,17 +10,11 @@
     <div *ngFor="let i of vocabulary | async" class="flip-card">
         <div class="flip-card-inner">
           <div  class="flip-card-front">
-            <!-- <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;"> -->
-            <!-- <h3><strong>{{vocabulary.word}}</strong></h3> -->
-              <h1>
-              {{(i)?.word}}
-              </h1>
+              <h1>{{(i)?.word}}</h1>
           </div>
           <div class="flip-card-back">
             <h2>{{(i)?.word}}</h2>
-            <h3 >
-              {{(i)?.definition}}
-              </h3>
+            <h3>{{(i)?.definition}}</h3>
           </div>
         </div>
       </div>
