@@ -46,9 +46,15 @@ export class AuthenticationService {
    }
 
    async login(username, password) {
-    const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
-    const route = await this.router.navigateByUrl('home')
+    try{
+      const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      const route = await this.router.navigateByUrl('home')
+   }catch{
+    
    }
+   
+   
+  }
 
    async logout() {
      try {
@@ -74,5 +80,6 @@ export class AuthenticationService {
       });
       return await alert.present();
     }
+    
   }
 }

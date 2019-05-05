@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
   constructor(public afAuth: AngularFireAuth, public router:Router, public auth:AuthenticationService) { }
 
   ngOnInit() {
-    this.auth.logout()
+    
   }
 
   async register() {

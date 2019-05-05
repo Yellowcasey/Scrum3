@@ -34,29 +34,13 @@ export class LoginPage implements OnInit {
     const{ username, password } = this
     try {
       this.authService.login(username, password);
-      console.log("Attempting to log in...")
-      if(!this.authService.authenticated){
-        presentAlert()
-        this.authService.logout()
-      }
+      console.log("Attempting to log in...") 
       
     } catch(err) {
-      //console.dir(err)
+     
       
     }
-    async function presentAlert() {
-      console.log("YES!")
-      const alertController = document.querySelector('ion-alert-controller');
-      await alertController.componentOnReady();
     
-      const alert = await alertController.create({
-        header: 'Alert!',
-        subHeader: 'Access Denied',
-        message: 'Unable to log in. Please try again.',
-        buttons: ['OK']
-      });
-      return await alert.present();
-    }
   }
 
 }
