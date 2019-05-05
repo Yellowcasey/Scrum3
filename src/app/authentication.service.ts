@@ -8,14 +8,10 @@ import * as firebase from 'firebase/app';
 import { MenuController, AlertController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
 
-
-
-
 @Injectable()
 export class AuthenticationService {
   user: firebase.User = null;
 
-  
   username: string = ""
   password: string = ""
   alert = this.alertController.create()
@@ -27,7 +23,7 @@ export class AuthenticationService {
       if(this.authenticated){
 
         menu.enable(true)
-        menu.getOpen()        
+        menu.getOpen()
       }else if(!this.authenticated){
         menu.enable(false)
       }else{
@@ -35,7 +31,7 @@ export class AuthenticationService {
       }
       console.log("User authstate changed")
       console.log(this.authenticated)
-      
+
     });
    }
    get currentUserObservable(): Observable<firebase.User> {
@@ -50,10 +46,9 @@ export class AuthenticationService {
       const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
       const route = await this.router.navigateByUrl('home')
    }catch{
-    
+
    }
-   
-   
+
   }
 
    async logout() {
@@ -63,15 +58,14 @@ export class AuthenticationService {
 
    } catch {
       console.error("Error logging out(authentication.service logout())");
-      this.router.navigate(['login']);
-      
-      
+      this.router.navigate(['login']);    
+
      }
      async function presentAlert() {
       console.log("YES!")
       const alertController = document.querySelector('ion-alert-controller');
       await alertController.componentOnReady();
-    
+
       const alert = await alertController.create({
         header: 'Alert!',
         subHeader: 'Unknown issue',
@@ -80,6 +74,6 @@ export class AuthenticationService {
       });
       return await alert.present();
     }
-    
+
   }
 }
