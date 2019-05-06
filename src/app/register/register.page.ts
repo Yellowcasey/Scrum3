@@ -1,8 +1,8 @@
 import { AuthenticationService } from './../authentication.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { auth } from 'firebase/app'
-import { AngularFireAuth } from 'angularfire2/auth'
+import { LoadingController, AlertController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,29 +11,56 @@ import { AngularFireAuth } from 'angularfire2/auth'
 })
 export class RegisterPage implements OnInit {
 
-  username: string = ""
-  password: string = ""
-  cpassword: string = ""
-
-  constructor(public afAuth: AngularFireAuth, public router:Router, public auth:AuthenticationService) { }
-
-  ngOnInit() {
-    
+  public signupForm: FormGroup;
+  public loading: any;
+  constructor(
+    private authService: AuthenticationService,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.signupForm = this.formBuilder.group({
+      email: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      password: [
+        '',
+        Validators.compose([Validators.minLength(6), Validators.required]),
+      ],
+    });
   }
 
-  async register() {
+  ngOnInit() {}
 
-    const {username, password, cpassword} = this
-    if(password !== cpassword) {
-      return console.error("Your passwords do not match")
-    }
-
-    try {
-      const res = await this.afAuth.auth.createUserWithEmailAndPassword(username, password)
-      const route = await this.router.navigateByUrl('home')
-      console.log("A user has been created");
-        }catch(error){
-          console.dir(error)
+  async signupUser(signupForm: FormGroup): Promise<void> {
+    if (!signupForm.valid) {
+      console.log(
+        'Need to complete the form, current value: ', signupForm.value
+      );
+    } else {
+      const email: string = signupForm.value.email;
+      const password: string = signupForm.value.password;
+  
+      this.authService.signupUser(email, password).then(
+        () => {
+          this.loading.dismiss().then(() => {
+            this.router.navigateByUrl('home');
+          });
+        },
+        error => {
+          this.loading.dismiss().then(async () => {
+            const alert = await this.alertCtrl.create({
+              message: error.message,
+              buttons: [{ text: 'Ok', role: 'cancel' }],
+            });
+            await alert.present();
+          });
         }
-}
+      );
+      this.loading = await this.loadingCtrl.create();
+      await this.loading.present();
+    }
+  }
 }
