@@ -5,7 +5,7 @@ import { masterFirebaseConfig } from './api-keys';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -32,8 +32,8 @@ export const firebaseConfig = {
   entryComponents: [],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     HttpModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),

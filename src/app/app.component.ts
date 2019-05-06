@@ -70,7 +70,7 @@ export class AppComponent {
     console.log(username)
     console.log(password)
     try {
-      this.authService.logout();
+      this.authService.logoutUser();
       console.log("Attempting to log out...")
       
     } catch(err) {
