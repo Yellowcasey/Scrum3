@@ -5,8 +5,10 @@ import { Observable } from 'rxjs/Observable';//from last step (authen) from info
 import { Router } from '@angular/router';
 import {AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { MenuController, AlertController } from '@ionic/angular';
-import { Alert } from 'selenium-webdriver';
+
 
 
 
@@ -45,6 +47,30 @@ export class AuthenticationService {
      return this.user !== null
    }
 
+   loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+  signupUser(email: string, password: string): Promise<any> {
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((newUserCredential: firebase.auth.UserCredential) => {
+        firebase
+          .firestore()
+          .doc(`/userProfile/${newUserCredential.user.uid}`)
+          .set({ email });
+      })
+      .catch(error => {
+        console.error(error);
+        throw new Error(error);
+      });
+      
+    }
+    resetPassword(email:string): Promise<void> {
+      return firebase.auth().sendPasswordResetEmail(email);
+    }
+    
+   /*
    async login(username, password) {
     try{
       const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
@@ -56,10 +82,13 @@ export class AuthenticationService {
      
     
    }
-   
-   
+   */
+  logoutUser():Promise<void> {
+    return firebase.auth().signOut();
   }
-
+  
+  }
+/*
    async logout() {
      try {
        const logout = await this.afAuth.auth.signOut();
@@ -86,4 +115,6 @@ export class AuthenticationService {
     }
     
   }
-}
+  */
+ 
+
