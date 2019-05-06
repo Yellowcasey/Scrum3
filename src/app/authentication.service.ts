@@ -13,9 +13,6 @@ import { MenuController, AlertController } from '@ionic/angular';
 @Injectable()
 export class AuthenticationService {
   user: firebase.User = null;
-
-  username: string = ""
-  password: string = ""
   alert = this.alertController.create()
 
   constructor(public afAuth: AngularFireAuth, public router: Router, public menu: MenuController, public alertController: AlertController) {
@@ -44,7 +41,7 @@ export class AuthenticationService {
    }
 
    loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
   signupUser(email: string, password: string): Promise<any> {
     return firebase

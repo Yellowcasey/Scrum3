@@ -13,12 +13,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   providers: [AuthenticationService]
 })
 export class AppComponent {
-  user;
+  
 
   private isLoggedIn: Boolean;
-  public userName: String;
-  username: string = ""
-  password: string = ""
+  public userName: String = "";
+  
 
   public appPages = [
     {
@@ -44,6 +43,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     public authService: AuthenticationService
   ) {
+    this.authService.currentUserObservable.subscribe(user => {if (user) {this.userName = user.email}});
     this.initializeApp();
     /*
     this.authService.user.subscribe(user => {
@@ -65,10 +65,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-  async logout(){
-    const{ username, password } = this
-    console.log(username)
-    console.log(password)
+  async logout(){    
     try {
       this.authService.logoutUser();
       console.log("Attempting to log out...")
