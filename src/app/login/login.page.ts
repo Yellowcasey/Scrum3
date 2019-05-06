@@ -40,9 +40,9 @@ export class LoginPage implements OnInit {
     }
 
   async ngOnInit() {
-    console.log('effort')
+    
     //--This if we want to logout when they close the page.
-    //await this.authService.logout()
+    await this.authService.logoutUser()
 
     //--This if we want to redirect if they are still logged in
     //couldn't get it, any ideas?

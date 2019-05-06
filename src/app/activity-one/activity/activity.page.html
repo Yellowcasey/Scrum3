@@ -9,8 +9,8 @@
     <ion-card-content>
     <div *ngFor="let i of vocabulary | async" class="flip-card">
         <div class="flip-card-inner">
-          <div  class="flip-card-front">
-              <h1>{{(i)?.word}}</h1>
+          <div  class="flip-card-front" >
+              <h1 class="ion-justify-content-center, ion-align-items-center">{{(i)?.word}}</h1>
           </div>
           <div class="flip-card-back">
             <h2>{{(i)?.word}}</h2>
