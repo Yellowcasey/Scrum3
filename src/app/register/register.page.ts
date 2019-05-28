@@ -33,7 +33,9 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.authService.logoutUser();
+  }
 
   async signupUser(signupForm: FormGroup): Promise<void> {
     if (!signupForm.valid) {
