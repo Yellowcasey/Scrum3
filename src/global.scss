@@ -9,3 +9,13 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+.welcome-card ion-img {
+    max-height: 35vh;
+    min-height: 1px !important;
+    overflow: hidden;
+}
+
+.user-name{
+    font-size: 12px !important;
+}

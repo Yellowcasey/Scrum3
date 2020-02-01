@@ -1,9 +1,9 @@
 <ion-app>
-  <ion-split-pane>
+  <ion-split-pane contentId = "">
     <ion-menu>
       <ion-header>
         <ion-toolbar>            
-          <ion-title>{{userName}}</ion-title>
+          <ion-title class="user-name">{{userName}}</ion-title>
           <ion-button (click)="logout()" slot="end">Logout</ion-button>
         </ion-toolbar>
       </ion-header>
@@ -20,7 +20,7 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
-    </ion-menu>
+    </ion-menu  >
     <ion-router-outlet main></ion-router-outlet>    
   </ion-split-pane>  
 </ion-app>
